@@ -1,13 +1,15 @@
 import React, { useContext } from 'react';
 import { UserContext } from '../../context/UserContext';
 import './PropertyCard.css'; 
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const PropertyCard = ({ property }) => {
   const { addToCart } = useContext(UserContext);
+  const Navigate = useNavigate();
 
   const handleAddToCart = () => {
     addToCart(property);
-    alert(`${property.title} has been added to your cart.`);
+    Navigate('/cart');
   };
 
   return (
