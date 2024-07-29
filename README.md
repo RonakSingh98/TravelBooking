@@ -64,3 +64,7 @@ Cart Management:
 -Add properties to the cart for booking.
 -View and manage items in the cart.
 -Proceed to checkout with a form to confirm bookings.
+
+Project Hosted Vercel Link - https://totality-frontend-challenge-so23.vercel.app/
+
+Backend Hosted Link - https://totality-frontend-challenge-seven.vercel.app/
