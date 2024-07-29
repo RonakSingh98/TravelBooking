@@ -1,0 +1,46 @@
+.filter-bar {
+    padding: 20px;
+    background-color: #f4f4f4;
+  }
+  
+  .filter-group {
+    margin-bottom: 15px;
+  }
+  
+  .filter-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .price-range {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .price-range label {
+    margin-right: 5px;
+  }
+  
+  .price-range input {
+    width: 100px;
+  }
+  
+  .amenities label {
+    display: block;
+  }
+  
+  button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  

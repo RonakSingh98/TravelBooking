@@ -19,13 +19,7 @@ const HomePage = () => {
   });
 
   useEffect(() => {
-    // Fetch property data from an API or database
     const fetchProperties = async () => {
-      // Example: Fetch from an API
-      // const response = await fetch('/api/properties');
-      // const data = await response.json();
-
-      // Mock data
       const data = [
         {
           id: 1,

@@ -1,83 +1,107 @@
 import React from 'react';
+import './FilterBar.css'; // Ensure this file contains styles for your filter bar
 
 const FilterBar = ({ filters, setFilters, applyFilters }) => {
   const handleLocationChange = (e) => {
     setFilters({ ...filters, location: e.target.value });
   };
 
-  const handlePriceChange = (e, index) => {
-    const newRange = [...filters.priceRange];
-    newRange[index] = parseInt(e.target.value, 10);
-    setFilters({ ...filters, priceRange: newRange });
+  const handlePriceRangeChange = (e) => {
+    const [minPrice, maxPrice] = e.target.value.split(',').map(Number);
+    setFilters({ ...filters, priceRange: [minPrice, maxPrice] });
   };
 
   const handleBedroomsChange = (e) => {
-    setFilters({ ...filters, bedrooms: parseInt(e.target.value, 10) });
+    setFilters({ ...filters, bedrooms: Number(e.target.value) });
   };
 
   const handleAmenitiesChange = (e) => {
-    const amenity = e.target.value;
-    const newAmenities = e.target.checked
-      ? [...filters.amenities, amenity]
-      : filters.amenities.filter((a) => a !== amenity);
-    setFilters({ ...filters, amenities: newAmenities });
+    const { value, checked } = e.target;
+    setFilters((prevFilters) => {
+      const amenities = checked
+        ? [...prevFilters.amenities, value]
+        : prevFilters.amenities.filter((amenity) => amenity !== value);
+
+      return { ...prevFilters, amenities };
+    });
   };
 
   return (
     <div className="filter-bar">
-      <input
-        type="text"
-        placeholder="Location"
-        value={filters.location}
-        onChange={handleLocationChange}
-      />
-      <input
-        type="number"
-        placeholder="Min Price"
-        value={filters.priceRange[0]}
-        onChange={(e) => handlePriceChange(e, 0)}
-      />
-      <input
-        type="number"
-        placeholder="Max Price"
-        value={filters.priceRange[1]}
-        onChange={(e) => handlePriceChange(e, 1)}
-      />
-      <input
-        type="number"
-        placeholder="Bedrooms"
-        value={filters.bedrooms}
-        onChange={handleBedroomsChange}
-      />
-      <div>
-        <label>
-          <input
-            type="checkbox"
-            value="WiFi"
-            onChange={handleAmenitiesChange}
-            checked={filters.amenities.includes('WiFi')}
-          />
-          WiFi
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            value="Parking"
-            onChange={handleAmenitiesChange}
-            checked={filters.amenities.includes('Parking')}
-          />
-          Parking
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            value="Pool"
-            onChange={handleAmenitiesChange}
-            checked={filters.amenities.includes('Pool')}
-          />
-          Pool
-        </label>
+      <div className="filter-group">
+        <label htmlFor="location">Location:</label>
+        <input
+          id="location"
+          type="text"
+          value={filters.location}
+          onChange={handleLocationChange}
+        />
       </div>
+
+      <div className="filter-group">
+        <label htmlFor="price-range">Price Range:</label>
+        <div className="price-range">
+          <label htmlFor="min-price">Min Price:</label>
+          <input
+            id="min-price"
+            type="number"
+            value={filters.priceRange[0]}
+            onChange={(e) => handlePriceRangeChange({ ...e, target: { value: `${e.target.value},${filters.priceRange[1]}` } })}
+          />
+          <label htmlFor="max-price">Max Price:</label>
+          <input
+            id="max-price"
+            type="number"
+            value={filters.priceRange[1]}
+            onChange={(e) => handlePriceRangeChange({ ...e, target: { value: `${filters.priceRange[0]},${e.target.value}` } })}
+          />
+        </div>
+      </div>
+
+      <div className="filter-group">
+        <label htmlFor="bedrooms">Bedrooms:</label>
+        <input
+          id="bedrooms"
+          type="number"
+          value={filters.bedrooms}
+          onChange={handleBedroomsChange}
+        />
+      </div>
+
+      <div className="filter-group">
+        <label>Amenities:</label>
+        <div className="amenities">
+          <label>
+            <input
+              type="checkbox"
+              value="WiFi"
+              checked={filters.amenities.includes('WiFi')}
+              onChange={handleAmenitiesChange}
+            />
+            WiFi
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              value="Parking"
+              checked={filters.amenities.includes('Parking')}
+              onChange={handleAmenitiesChange}
+            />
+            Parking
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              value="Pool"
+              checked={filters.amenities.includes('Pool')}
+              onChange={handleAmenitiesChange}
+            />
+            Pool
+          </label>
+          {/* Add more amenities as needed */}
+        </div>
+      </div>
+
       <button onClick={applyFilters}>Apply Filters</button>
     </div>
   );

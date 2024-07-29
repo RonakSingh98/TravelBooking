@@ -11,7 +11,6 @@ const Header = () => {
     <header className="header">
       <div className="left-nav">
         <Link to="/">Home</Link>
-        <Link to="/contact">Contact Us</Link>
       </div>
       <div className="right-nav">
         {user ? (
