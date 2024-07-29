@@ -1,10 +1,14 @@
-// src/components/PropertyList/PropertyCard.js
-
 import React, { useContext } from 'react';
 import { UserContext } from '../../context/UserContext';
+import './PropertyCard.css'; 
 
 const PropertyCard = ({ property }) => {
   const { addToCart } = useContext(UserContext);
+
+  const handleAddToCart = () => {
+    addToCart(property);
+    alert(`${property.title} has been added to your cart.`);
+  };
 
   return (
     <div className="property-card">
@@ -15,7 +19,7 @@ const PropertyCard = ({ property }) => {
       <p>Location: {property.location}</p>
       <p>Bedrooms: {property.bedrooms}</p>
       <p>Amenities: {property.amenities.join(', ')}</p>
-      <button onClick={() => addToCart(property)}>Book Now</button>
+      <button onClick={handleAddToCart}>Book Now</button>
     </div>
   );
 };

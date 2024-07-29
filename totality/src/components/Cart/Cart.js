@@ -1,13 +1,18 @@
 // src/components/Cart/Cart.js
 
 import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../context/UserContext';
-import './Cart.css'; // Optional: Import CSS for styling
+import './Cart.css'; // Ensure this file contains styles for your cart
 
 const Cart = () => {
-  const { cart, removeFromCart, clearCart } = useContext(UserContext);
+  const { cart, removeFromCart } = useContext(UserContext);
+  const navigate = useNavigate();
 
-  const totalCost = cart.reduce((total, item) => total + item.price, 0);
+  const handleCheckout = () => {
+    // Navigate to the checkout page
+    navigate('/checkout');
+  };
 
   return (
     <div className="cart">
@@ -17,24 +22,16 @@ const Cart = () => {
       ) : (
         <>
           <ul>
-            {cart.map((item) => (
-              <li key={item.id}>
-                <div className="cart-item">
-                  <img src={item.image} alt={item.title} />
-                  <div>
-                    <h4>{item.title}</h4>
-                    <p>Price: ${item.price}</p>
-                  </div>
-                  <button onClick={() => removeFromCart(item.id)}>Remove</button>
-                </div>
+            {cart.map((item, index) => (
+              <li key={index}>
+                {item.title} - ${item.price}
+                <button onClick={() => removeFromCart(item)}>Remove</button>
               </li>
             ))}
           </ul>
-          <div className="cart-summary">
-            <p>Total: ${totalCost}</p>
-            <button onClick={clearCart}>Clear Cart</button>
-            {/* Add a checkout button or link */}
-          </div>
+          <button onClick={handleCheckout} className="checkout-button">
+            Proceed to Checkout
+          </button>
         </>
       )}
     </div>

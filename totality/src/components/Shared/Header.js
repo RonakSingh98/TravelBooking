@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import Cart from '../Cart/Cart';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../../context/UserContext';
 import './Header.css';
@@ -16,6 +17,7 @@ const Header = () => {
         {user ? (
           <>
             <span className="username">Welcome, {user.name}</span>
+            <Link to="/cart">Cart</Link> {/* Add link to cart */}
             <button onClick={logout}>Logout</button>
           </>
         ) : (

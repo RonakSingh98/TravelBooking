@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import PropertyList from '../components/PropertyList/PropertyList';
 import FilterBar from '../components/FilterBar/FilterBar';
-import './HomePage.css'; // Optional: Import CSS for styling
-
+import './HomePage.css';
+import propert1 from '../images/pic1.jpg'
+import propert2 from '../images/pic2.jpg'
+import propert3 from '../images/pic3.jpg'
+import propert4 from '../images/pic4.jpg'
+import propert5 from '../images/pic5.jpg'
+import propert6 from '../images/pic6.jpg'
 const HomePage = () => {
   const [properties, setProperties] = useState([]);
   const [filteredProperties, setFilteredProperties] = useState([]);
@@ -24,7 +29,7 @@ const HomePage = () => {
       const data = [
         {
           id: 1,
-          image: 'property1.jpg',
+          image: propert1,
           title: 'Cozy Apartment',
           description: 'A nice place to stay.',
           price: 120,
@@ -34,7 +39,7 @@ const HomePage = () => {
         },
         {
           id: 2,
-          image: 'property2.jpg',
+          image: propert2,
           title: 'Luxury Villa',
           description: 'Enjoy a luxurious vacation.',
           price: 300,
@@ -42,7 +47,47 @@ const HomePage = () => {
           bedrooms: 4,
           amenities: ['Pool', 'WiFi'],
         },
-        // Add more properties as needed
+        {
+          id: 3,
+          image: propert3,
+          title: 'Paradise Hotel',
+          description: 'Experience comfort and style in every corner.',
+          price: 200,
+          location: 'New York',
+          bedrooms: 2,
+          amenities: ['Pool', 'Parking'],
+        },
+        {
+          id: 4,
+          image: propert4,
+          title: 'Elegant Manor',
+          description: 'Your perfect getaway awaits you here.',
+          price: 300,
+          location: 'Los Angeles',
+          bedrooms: 4,
+          amenities: ['Parking', 'WiFi'],
+        },
+        {
+          id: 5,
+          image: propert5,
+          title: 'Grand Estate',
+          description: 'Unwind and relax in serene surroundings.',
+          price: 300,
+          location: 'New York',
+          bedrooms: 4,
+          amenities: ['Pool', 'Parking'],
+        },
+        {
+          id: 6,
+          image: propert6,
+          title: 'Elegant Manor',
+          description: 'Discover a cozy retreat you will love.',
+          price: 300,
+          location: 'Los Angeles',
+          bedrooms: 4,
+          amenities: ['Pool', 'WiFi'],
+        },
+       
       ];
 
       setProperties(data);

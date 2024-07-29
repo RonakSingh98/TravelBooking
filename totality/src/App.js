@@ -1,12 +1,14 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Login from './components/Auth/Login';
-import Signup from './components/Auth/Signup'; // Ensure the path is correct
-import Home from './pages/HomePage'; // Example of another component
-import { UserProvider } from './context/UserContext'; // Assuming UserContext is defined
-import Header from './components/Shared/Header'; // Import Header
-import Footer from './components/Shared/Footer'; // Import Footer
-import './App.css'; // Add your styles here
+import Signup from './components/Auth/Signup'; 
+import Home from './pages/HomePage'; 
+import { UserProvider } from './context/UserContext'; 
+import Header from './components/Shared/Header'; 
+import Footer from './components/Shared/Footer'; 
+import Cart from './components/Cart/Cart';
+import CheckoutForm from './components/Checkout/CheckoutForm';
+import './App.css';
 
 const App = () => {
   return (
@@ -18,7 +20,8 @@ const App = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/" element={<Home />} />
-            {/* Add other routes here */}
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/checkout" element={<CheckoutForm />} />
           </Routes>
         </main>
         <Footer />

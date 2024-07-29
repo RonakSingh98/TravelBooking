@@ -10,8 +10,6 @@ export const UserProvider = ({ children }) => {
 
   const login = (userData) => {
     setUser(userData);
-    // Optionally, load cart data from a database or API
-    // Example: loadCartData(userData.id);
   };
 
   const logout = () => {
@@ -23,16 +21,13 @@ export const UserProvider = ({ children }) => {
     setCart((prevCart) => [...prevCart, property]);
   };
 
-  const removeFromCart = (propertyId) => {
-    setCart((prevCart) => prevCart.filter((item) => item.id !== propertyId));
+  const removeFromCart = (itemToRemove) => {
+    setCart((prevCart) =>
+      prevCart.filter((item) => item !== itemToRemove)
+    );
   };
-
-  const clearCart = () => {
-    setCart([]);
-  };
-
   return (
-    <UserContext.Provider value={{ user, cart, login, logout, addToCart, removeFromCart, clearCart }}>
+    <UserContext.Provider value={{ user, login, logout, cart, addToCart,removeFromCart }}>
       {children}
     </UserContext.Provider>
   );
